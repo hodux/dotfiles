@@ -1,1 +1,0 @@
-xclip -sel clipboard (pipe with cat or echo to copy to clipboard)
