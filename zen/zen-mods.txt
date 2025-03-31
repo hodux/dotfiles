@@ -1,4 +1,0 @@
-better unloaded tabs
-fluid url
-sidebar expand on hover
-super url bar
