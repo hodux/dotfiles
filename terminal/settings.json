@@ -9,13 +9,15 @@
         "action": "copy",
         "singleLine": false
       },
-      "id": "User.copy.644BA8F2",
-      "keys": "ctrl+c"
+      "id": "User.copy.644BA8F2"
     },
     {
       "command": "paste",
-      "id": "User.paste",
-      "keys": "ctrl+v"
+      "id": "User.paste"
+    },
+    {
+      "command": "find",
+      "id": "User.find"
     },
     {
       "command":
@@ -24,13 +26,7 @@
         "split": "auto",
         "splitMode": "duplicate"
       },
-      "id": "User.splitPane.A6751878",
-      "keys": "alt+shift+d"
-    },
-    {
-      "command": "find",
-      "id": "User.find",
-      "keys": "ctrl+shift+f"
+      "id": "User.splitPane.A6751878"
     }
   ],
   "alwaysShowTabs": true,
@@ -38,8 +34,27 @@
   "copyFormatting": "none",
   "copyOnSelect": false,
   "defaultProfile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
-  "initialCols": 120,
-  "initialRows": 30,
+  "initialCols": 75,
+  "initialRows": 20,
+  "keybindings":
+  [
+    {
+      "id": "User.copy.644BA8F2",
+      "keys": "ctrl+c"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "User.paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "id": "User.splitPane.A6751878",
+      "keys": "alt+shift+d"
+    }
+  ],
   "newTabMenu":
   [
     {
@@ -50,7 +65,8 @@
   {
     "defaults":
     {
-      "colorScheme": "Dark+",
+      "bellStyle": "none",
+      "colorScheme": "Apple Classic",
       "font":
       {
         "face": "JetBrains Mono",
@@ -96,12 +112,49 @@
         "hidden": true,
         "name": "Ubuntu",
         "source": "Windows.Terminal.Wsl"
+      },
+      {
+        "guid": "{e51368d3-ff68-5bba-bfb7-9d361eeb8748}",
+        "hidden": true,
+        "name": "Developer Command Prompt for VS 2022",
+        "source": "Windows.Terminal.VisualStudio"
+      },
+      {
+        "guid": "{67853e4a-34bc-52c9-9c4c-e93fdc0945a5}",
+        "hidden": true,
+        "name": "Developer PowerShell for VS 2022",
+        "source": "Windows.Terminal.VisualStudio"
       }
     ]
   },
-  "schemes": [],
+  "schemes":
+  [
+    {
+      "background": "#2C2B2B",
+      "black": "#000000",
+      "blue": "#0225C7",
+      "brightBlack": "#686868",
+      "brightBlue": "#6871FF",
+      "brightCyan": "#60FDFF",
+      "brightGreen": "#5FFA68",
+      "brightPurple": "#FF77FF",
+      "brightRed": "#FF6E67",
+      "brightWhite": "#FFFFFF",
+      "brightYellow": "#FFFC67",
+      "cursorColor": "#C7C7C7",
+      "cyan": "#00C5C7",
+      "foreground": "#D5A200",
+      "green": "#00C200",
+      "name": "Apple Classic",
+      "purple": "#CA30C7",
+      "red": "#C91B00",
+      "selectionBackground": "#6B5B02",
+      "white": "#C7C7C7",
+      "yellow": "#C7C400"
+    }
+  ],
   "showTabsInTitlebar": true,
   "showTerminalTitleInTitlebar": true,
   "themes": [],
-  "useAcrylicInTabRow": true
+  "useAcrylicInTabRow": false
 }
