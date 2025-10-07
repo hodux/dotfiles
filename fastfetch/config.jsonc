@@ -1,0 +1,50 @@
+{
+  "logo": {
+    "type": "auto",        // Logo type: auto, builtin, small, file, etc.
+    "source": "~/.config/fastfetch/gengar.png",  // Built-in logo name or file path
+    "width": 25,           // Width in characters
+    "height": 10,          // Height in characters
+    "padding": {
+        "top": 0,          // Top padding
+        "left": 0,         // Left padding
+        "right": 2         // Right padding
+    }
+  },
+  "display": {
+    "color": {
+      "keys": "#7D7D7D",
+      "title": "#404040"
+    },
+  },
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "theme",
+    "icons",
+    "font",
+    "cursor",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "disk",
+    "localip",
+    "battery",
+    "poweradapter",
+    "locale",
+    "break",
+  ]
+}

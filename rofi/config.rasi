@@ -1,0 +1,12 @@
+
+//@theme "/nix/store/vpjv093i335jgnz23sglifrj9rlsamcv-rofi-1.7.9/share/rofi/themes/gruvbox-dark-soft.rasi"
+
+//@theme "/nix/store/vpjv093i335jgnz23sglifrj9rlsamcv-rofi-1.7.9/share/rofi/themes/sidebar.rasi"
+
+//@theme "/nix/store/vpjv093i335jgnz23sglifrj9rlsamcv-rofi-1.7.9/share/rofi/themes/Arc-Dark.rasi"
+
+//@theme "/nix/store/vpjv093i335jgnz23sglifrj9rlsamcv-rofi-1.7.9/share/rofi/themes/glue_pro_blue.rasi"
+
+//@theme "/nix/store/5x2c5vr1mag58cwi5jyn7a1w95g906wd-rofi-2.0.0/share/rofi/themes/glue_pro_blue.rasi"
+
+@theme "/nix/store/5x2c5vr1mag58cwi5jyn7a1w95g906wd-rofi-2.0.0/share/rofi/themes/glue_pro_blue.rasi"
