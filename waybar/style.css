@@ -13,19 +13,19 @@
 /*
 Arc-Dark Color Scheme
 */
-/* @define-color highlight #6272A4; */
-/* @define-color base1 #404552; */
-/* @define-color borderColor #6272A4; */
-/* @define-color textColor #bebebe; */
-
+@define-color highlight #6272A4;
+@define-color base1 #404552;
+@define-color borderColor #6272A4;
+@define-color textColor #bebebe;
 
 /*
 Red-Black Color Scheme
 */
-@define-color highlight #ff5555; /* Bright red */
-@define-color base1 #3A3A3A; /* Very dark background */
-@define-color borderColor #ff5555; /* Bright red */
-@define-color textColor #f8f8f2; /* Light off-white */
+/* @define-color highlight #ff5555; */
+/* @define-color base1 #3A3A3A;  */
+/* @define-color borderColor #3A3A3A; */
+/* @define-color textColor #f8f8f2; */
+
 @keyframes blink-warning {
     70% {
         color: white;
@@ -63,13 +63,13 @@ Red-Black Color Scheme
 
 /* The whole bar */
 #waybar {
-    background: transparent;
+    /* background: transparent; */
     color: @textColor;
     background-color: @base1;
     font-family: JetBrainsMono Nerd Font;
     font-size: 14px;
     border: 1px solid @borderColor;
-    /* opacity: 0.8; */
+    /* opacity: 0.1; */
     min-height: 40px;
 }
 
@@ -227,19 +227,19 @@ Red-Black Color Scheme
   margin: 4px 3px;
   border-radius: 4px;
   background-color: #1e1e2e;
-  color: #cdd6f4;
+  color: @textColor;
 }
 
 #workspaces button.active {
-  color: #1e1e2e;
-  background-color: #cdd6f4;
+  color: @textColor;
+  background-color: @highlight;
 }
 
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
   color: #1e1e2e;
-  background-color: #cdd6f4;
+  background-color: @highlight;
 }
 
 #workspaces button.urgent {
