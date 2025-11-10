@@ -1,4 +1,4 @@
-{ config, pkgs, spicetify-nix, zen-browser, ... }:
+{ config, pkgs, spicetify-nix, zen-browser, caelestia-shell, caelestia-cli, ... }:
 
 {
   imports = [
@@ -11,7 +11,10 @@
   home.username = "rintaro";
   home.homeDirectory = "/home/rintaro";
 
+  # Zen
   programs.zen-browser.enable = true;
+
+  # Spicetify
   programs.spicetify =
   let
     spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
@@ -29,20 +32,49 @@
       ncsVisualizer
     ];
     enabledSnippets = with spicePkgs.snippets; [
-      rotatingCoverart
+      # rotatingCoverart
       pointer
     ];
 
-    theme = spicePkgs.themes.catppuccin;
-    colorScheme = "mocha";
+    theme = spicePkgs.themes.dribbblishDynamic;
   };
 
+  # Default apps
+  xdg.mimeApps = let
+    value = let
+      zen-browser = zen-browser.packages.nixos.beta; # or twilight
+    in
+      zen-browser.meta.desktopFileName;
+
+    associations = builtins.listToAttrs (map (name: {
+	inherit name value;
+      }) [
+	"application/x-extension-shtml"
+	"application/x-extension-xhtml"
+	"application/x-extension-html"
+	"application/x-extension-xht"
+	"application/x-extension-htm"
+	"x-scheme-handler/unknown"
+	"x-scheme-handler/mailto"
+	"x-scheme-handler/chrome"
+	"x-scheme-handler/about"
+	"x-scheme-handler/https"
+	"x-scheme-handler/http"
+	"application/xhtml+xml"
+	"application/json"
+	"text/plain"
+	"text/html"
+      ]);
+  in {
+    associations.added = associations;
+    defaultApplications = associations;
+  };
 
   # Packages that should be installed to the user profile.
   home.packages = [
-    pkgs.htop
-    pkgs.fortune
-    pkgs.cmatrix
+    pkgs.qutebrowser
+    caelestia-shell.packages.x86_64-linux.with-cli
+    caelestia-cli.packages.x86_64-linux.with-shell
   ];
 
   # This value determines the Home Manager release that your

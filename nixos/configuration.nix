@@ -11,15 +11,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
+  networking.hostName = "gate";
   # Pick only one of the below networking options.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         # Shows battery charge of connected devices on supported
@@ -61,15 +61,27 @@
     shell = pkgs.fish;
   };
 
-  # Programs
-  programs.fish.enable = true;
-  programs.hyprland.enable = true;
-  programs.waybar.enable = true;
-  programs.firefox.enable = true;
-
   # Services
-  services.displayManager.ly.enable = true;
-  services.mpd.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+
+    settings = {
+      # DOOM PSX fire
+      animate = true;
+      animation = "0";
+
+      # Hide F1–F12 hints
+      hide_key_hints = true;
+      # Hide version
+      hide_version_string = true;
+
+      # Add a clock
+      bigclock = true;
+    };
+  };
+
+  # Daemon to update firmware UEFI
+  services.fwupd.enable = true;
 
   # Keybindings
   services.keyd.enable = true;
@@ -78,6 +90,12 @@
   # Allow unfree apps
   nixpkgs.config.allowUnfree = true;
 
+  # NixOS Modules
+  programs.fish.enable = true;
+  programs.hyprland.enable = true;
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -85,78 +103,69 @@
     kitty
     foot
 
-    # Shell
-    fish
-
     # Dev + CLIs
     git
+    tmux
+    ripgrep
+    javaPackages.compiler.temurin-bin.jdk-8
+    adoptopenjdk-icedtea-web
     python314
     nodejs_24
     go
-    zulu8
     docker
     kubectl
     krew
-    kubernetes-helm
+    yamllint
     fastfetch
-    mpd
-    rmpc
-    yad
     glances
-    discordo
+    cmatrix
+    htop
+    btop
+    openssl
     gcc
     unzip
     gnumake
     rustc
     cargo
+    gvfs
+    smbclient-ng
+    aichat
+    starship
+    eza
 
-    # Dev
-    tmux
-    ripgrep
-    ranger
-
-    # IDEs
+    # Editors
     neovim
     vscode
     jetbrains.idea-community
+    zed-editor
 
     # System
-    hyprpaper
     hyprshot
-    hyprlock
-    hypridle
-    hyprcursor
+    hyprpicker
+    wl-clipboard
     ly
     xfce.thunar
-    rofi
-    nwg-drawer
-    wleave
     brightnessctl
     playerctl
-    swaynotificationcenter
-    wl-clipboard
     pavucontrol
-    pamixer
     home-manager
-    yad
-    wallust
     adwaita-icon-theme
+    papirus-icon-theme
+    emote
 
     # Apps
+    obsidian
     discord
     spotify
-
-    # Browser
-    firefox
-    librewolf
-    qutebrowser
+    feishin
+    onlyoffice-desktopeditors
 
   ];
 
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -169,6 +178,10 @@
     nerd-fonts.jetbrains-mono
     cozette
     source-code-pro
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-36.9.5"
   ];
 
   # NEVER CHANGE THIS
