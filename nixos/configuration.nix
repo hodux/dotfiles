@@ -11,7 +11,20 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "gate";
+  # Plymouth for splashscreen
+  boot.plymouth.enable = true;
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
+  ];
+  boot.loader.timeout = 0;
+
+  networking.hostName = "nixos";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -132,6 +145,8 @@
     aichat
     starship
     eza
+    zoxide
+    direnv
 
     # Editors
     neovim
@@ -159,6 +174,8 @@
     spotify
     feishin
     onlyoffice-desktopeditors
+    vmware-workstation
+    qemu
 
   ];
 

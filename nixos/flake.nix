@@ -33,7 +33,7 @@
     { self, nixpkgs, home-manager, spicetify-nix, zen-browser, caelestia-shell, caelestia-cli, ... }:
     {
       nixosConfigurations = {
-        gate = nixpkgs.lib.nixosSystem {
+        nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./configuration.nix

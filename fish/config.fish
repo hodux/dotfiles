@@ -6,6 +6,10 @@ if status is-interactive
     # Starship custom prompt
     starship init fish | source
 
+    # Direnv + Zoxide
+    zoxide init fish | source
+    eval (direnv hook fish)
+
     # Better ls
     alias ls='eza --icons --group-directories-first'
 
