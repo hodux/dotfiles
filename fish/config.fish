@@ -18,6 +18,5 @@ if status is-interactive
     abbr v 'nvim'
     abbr n 'nvim'
 
-    # Custom colours
-    cat ~/.local/state/caelestia/sequences.txt 2> /dev/null
+    # cat ~/.local/state/caelestia/sequences.txt 2> /dev/null
 end

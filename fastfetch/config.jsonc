@@ -1,50 +1,70 @@
 {
-  "logo": {
-    "type": "auto",        // Logo type: auto, builtin, small, file, etc.
-    "source": "~/.config/fastfetch/gengar.png",  // Built-in logo name or file path
-    "width": 25,           // Width in characters
-    "height": 10,          // Height in characters
-    "padding": {
-        "top": 0,          // Top padding
-        "left": 0,         // Left padding
-        "right": 2         // Right padding
-    }
-  },
-  "display": {
-    "color": {
-      "keys": "#7D7D7D",
-      "title": "#404040"
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": null,
+    "display": {
+        "separator": "  ",
+        "color": "white",
+        "constants": [
+            "\u001b[37m",
+            "\u001b[37m",
+            "\u001b[37m",
+            "\u001b[37m"
+        ]
     },
-  },
-  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-  "modules": [
-    "title",
-    "separator",
-    "os",
-    "host",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
-    "display",
-    "de",
-    "wm",
-    "wmtheme",
-    "theme",
-    "icons",
-    "font",
-    "cursor",
-    "terminal",
-    "terminalfont",
-    "cpu",
-    "gpu",
-    "memory",
-    "swap",
-    "disk",
-    "localip",
-    "battery",
-    "poweradapter",
-    "locale",
-    "break",
-  ]
+    "modules": [
+        "break",
+        {
+            "type": "custom",
+            "key": "╭───────────────────────────────────╮"
+        },
+        {
+            "type": "kernel",
+            "key": "│ {$2}{$1}  kernel",
+            "format": "{$2}{release>22}{$1} │"
+        },
+        {
+            "type": "command",
+            "key": "│   uptime",
+            "text": "uptime -p | cut -d ' ' -f 2-",
+            "format": "{>22} │"
+        },
+        {
+            "type": "shell",
+            "key": "│ {$2}{$1}  shell ",
+            "format": "{$2}{pretty-name>22}{$1} │"
+        },
+        {
+            "type": "command",
+            "key": "│ {$3}{$1}  mem   ",
+            "text": "free -m | awk 'NR==2{printf \"%.2f GiB / %.2f GiB\",$3/1024,$2/1024}'",
+            "format": "{$3}{>22}{$1} │"
+        },
+        {
+            "type": "packages",
+            "key": "│   pkgs  ",
+            "format": "{all>22} │"
+        },
+        {
+            "type": "command",
+            "key": "│ {$2}{$1}  user  ",
+            "text": "echo $USER",
+            "format": "{$2}{>22}{$1} │"
+        },
+        {
+            "type": "command",
+            "key": "│   hname ",
+            "text": "hostnamectl hostname",
+            "format": "{>22} │"
+        },
+        {
+            "type": "os",
+            "key": "│ {$4}󰻀{$1}  distro",
+            "format": "{$4}{pretty-name>22}{$1} │"
+        },
+        {
+            "type": "custom",
+            "key": "╰───────────────────────────────────╯"
+        },
+        "break"
+    ]
 }
