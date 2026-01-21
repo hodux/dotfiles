@@ -642,17 +642,24 @@ require('lazy').setup({
   },
 
   {
-    'ellisonleao/gruvbox.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- 'ellisonleao/gruvbox.nvim',
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- config = function()
+    --   ---@diagnostic disable-next-line: missing-fields
+    --   require('gruvbox').setup {
+    --     styles = {
+    --       comments = { italic = false }, -- Disable italics in comments
+    --     },
+    --   }
+    'navarasu/onedark.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('gruvbox').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
+      require('onedark').setup {
+        style = 'warmer',
       }
+      require('onedark').load()
 
-      vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'onedark'
     end,
   },
 

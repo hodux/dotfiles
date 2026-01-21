@@ -1,0 +1,6 @@
+themes/
+noctalia/
+completions/
+fish_variables
+conf.d/secrets.fish
+current-theme.conf
