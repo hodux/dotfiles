@@ -4,7 +4,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 
     # Starship custom prompt
-    starship init fish | source
+    # starship init fish | source
 
     # Direnv + Zoxide
     zoxide init fish | source
