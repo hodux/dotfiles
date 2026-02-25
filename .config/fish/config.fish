@@ -12,6 +12,7 @@ if status is-interactive
 
     # Better ls
     alias ls='eza --icons --group-directories-first'
+    alias k='kubectl'
 
     # Abbrs
     abbr vim 'nvim'
