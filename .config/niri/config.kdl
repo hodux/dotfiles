@@ -58,8 +58,8 @@ input {
 // https://yalter.github.io/niri/Configuration:-Outputs
 output "eDP-1" {
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode custom=true "2048x1152@60"
-    // mode "1920x1080@60"
+    // mode custom=true "2048x1152@60"
+    mode "1920x1080@60"
     scale 1
 
     transform "normal"
@@ -114,7 +114,7 @@ layout {
         // Uncomment this line to disable the focus ring.
         // off
 
-        width 1
+        width 2
 
         active-color "#7fc8ff"
         inactive-color "#505050"
@@ -189,7 +189,7 @@ hotkey-overlay {
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -247,7 +247,7 @@ window-rule {
 
 window-rule {
     match is-active=true app-id=r#"kitty$"#
-    opacity 0.9
+    opacity 0.85
 }
 
 

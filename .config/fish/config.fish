@@ -13,11 +13,14 @@ if status is-interactive
     # Better ls
     alias ls='eza --icons --group-directories-first'
     alias k='kubectl'
+    alias vim 'nvim'
+    alias v 'nvim'
+    alias n 'nvim'
 
     # Abbrs
-    abbr vim 'nvim'
-    abbr v 'nvim'
-    abbr n 'nvim'
+    # abbr vim 'nvim'
+    # abbr v 'nvim'
+    # abbr n 'nvim'
 
     # cat ~/.local/state/caelestia/sequences.txt 2> /dev/null
 end
