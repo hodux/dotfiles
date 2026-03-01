@@ -110,5 +110,8 @@ eval "$(direnv hook zsh)"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias n="nvim"
-alias vim="nvim"
+alias ls='eza --icons --group-directories-first'
+alias k='kubectl'
+alias vim 'nvim'
+alias v 'nvim'
+alias n 'nvim'
