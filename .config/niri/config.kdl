@@ -18,7 +18,7 @@ input {
 
         // time in ms before repeat starts (default is usually 600)
         repeat-delay 250
-        
+
         // repeats per second once holding (default is usually 25)
         repeat-rate 30
     }
@@ -225,17 +225,38 @@ window-rule {
     open-floating true
 }
 
+// from wip/branch
+blur {
+   passes 2        // more passes = stronger blur (default: 3)
+   offset 3.0      // sample distance per pass (default: 3.0)
+   noise 0.02      // grain overlay (default: 0.02)
+   saturation 1.5  // color saturation boost (default: 1.5)
+}
+
+window-rule {
+    background-effect {
+        blur true
+    }
+}
+
+layer-rule {
+    match namespace="^noctalia-launcher-overlay-eDP-1$"
+
+    background-effect {
+        blur true
+    }
+}
+
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
-    geometry-corner-radius 16
+    geometry-corner-radius 12
     clip-to-geometry true
 }
 
 // Remove the solid background from focus-ring
 window-rule {
-    match app-id=r#"^kitty$"#
     draw-border-with-background false
 }
 
@@ -260,7 +281,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { 
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" {
         spawn "kitty"; }
     Mod+Space hotkey-overlay-title="Run an Application" {
         spawn-sh "noctalia-shell ipc call launcher toggle"; }
@@ -531,4 +552,3 @@ binds {
 }
 
 include "./noctalia.kdl"
-
