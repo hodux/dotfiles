@@ -5,7 +5,6 @@ function fish_prompt
     set -l separator ""        # Standard triangle
     set -l separator_round ""  # Rounded cap (U+E0B4)
     set -l branch_icon ""
-    set -l nixos_icon ""
 
     # Colors
     set -l os_bg magenta
@@ -18,13 +17,13 @@ function fish_prompt
     set -l err_fg black
 
     # 1. NixOS Logo
-    set_color -b $os_bg $os_fg
-    echo -n " $nixos_icon "
-    set -l current_bg $os_bg
+    # set_color -b $os_bg $os_fg
+    # echo -n " $nixos_icon "
+    # set -l current_bg $os_bg
 
     # 2. Directory
     set_color -b $dir_bg $current_bg
-    echo -n $separator
+    # echo -n $separator
     set_color -b $dir_bg $dir_fg
     echo -n " "(prompt_pwd)" "
     set current_bg $dir_bg
@@ -53,7 +52,7 @@ function fish_prompt
     # and the background to 'normal' to create the curve effect.
     set_color normal
     set_color $current_bg
-    echo -n $separator_round
+    echo -n $separator
     
     set_color normal
     echo -n " "
