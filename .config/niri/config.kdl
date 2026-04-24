@@ -34,7 +34,7 @@ input {
         natural-scroll
         accel-profile "flat"
         scroll-method "two-finger"
-        accel-speed 0.5
+        accel-speed 0.75
         // disabled-on-external-mouse
     }
 
@@ -87,6 +87,8 @@ layout {
     gaps 8
 
     center-focused-column "never"
+    always-center-single-column
+
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -212,6 +214,15 @@ animations {
     // slowdown 3.0
 }
 
+// from wip/branch
+blur {
+   passes 2        // more passes = stronger blur (default: 3)
+   offset 3.0      // sample distance per pass (default: 3.0)
+   noise 0.02      // grain overlay (default: 0.02)
+   saturation 1.5  // color saturation boost (default: 1.5)
+}
+
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -224,6 +235,7 @@ window-rule {
     open-on-workspace "ghost"
 }
 
+// floating windows
 window-rule {
   match app-id="Microsoft Word"
   match app-id="Microsoft PowerPoint"
@@ -231,35 +243,10 @@ window-rule {
   match app-id=r#"^thunar$"#
   match app-id=r#"^obsidian$"#
   open-floating true
-
 }
 
-// from wip/branch
-blur {
-   passes 2        // more passes = stronger blur (default: 3)
-   offset 3.0      // sample distance per pass (default: 3.0)
-   noise 0.02      // grain overlay (default: 0.02)
-   saturation 1.5  // color saturation boost (default: 1.5)
-}
-
-// only visible on transparent windows
+// blur all windows (only visible on transparent windows)
 window-rule {
-    background-effect {
-        blur true
-    }
-}
-
-layer-rule {
-    match namespace="^noctalia-launcher-overlay-eDP-1$"
-
-    background-effect {
-        blur true
-    }
-}
-
-layer-rule {
-    match namespace="^vicinae$"
-
     background-effect {
         blur true
     }
@@ -277,17 +264,25 @@ window-rule {
     draw-border-with-background false
 }
 
-// Make inactive windows semitransparent.
+// Terminal Opacity
 window-rule {
     match is-active=false app-id=r#"kitty$"#
-    opacity 0.80
+    opacity 0.85
 }
-
 window-rule {
     match is-active=true app-id=r#"kitty$"#
-    opacity 0.80
+    opacity 0.90
 }
 
+// Blur launchers
+layer-rule {
+    match namespace="^noctalia-launcher-overlay-eDP-1$"
+    match namespace="^vicinae$"
+
+    background-effect {
+        blur true
+    }
+}
 
 binds {
     // Most actions that you can bind here can also be invoked programmatically with
@@ -316,6 +311,8 @@ binds {
         spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
     Mod+N hotkey-overlay-title="Lock Session" {
         spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Mod+backslash hotkey-overlay-title="Color Picker" {
+        spawn-sh "hyprpicker | wl-copy"; }
 
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
