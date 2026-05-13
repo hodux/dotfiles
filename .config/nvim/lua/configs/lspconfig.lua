@@ -1,9 +1,11 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls" }
+local servers = { "html", "cssls", "nixd", "harper_ls" }
 vim.lsp.enable(servers)
 
--- add nixd
+-- read :h vim.lsp.config for changing options of lsp servers 
+
+-- nixd
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -28,7 +30,3 @@ vim.lsp.config("nixd", {
     },
   },
 })
-
-vim.lsp.enable("nixd")
-
--- read :h vim.lsp.config for changing options of lsp servers 

@@ -16,36 +16,25 @@ return {
  -- test new blink
   { import = "nvchad.blink.lazyspec" },
 
-  -- telescope ovverride to show dotfiles and .gitignore files
+  -- show dotfiles and .gitignore files
   {
     'nvim-telescope/telescope.nvim', version = '*',
     dependencies = {
         'nvim-lua/plenary.nvim',
     },
     config = function()
-      require("telescope").setup({
-        pickers = {
-          find_files = {
-            find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
-          },
-        },
-      })
+      require "configs.telescope"
     end,
   },
 
-  -- surround with ysiw
+  -- surround
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-          -- Configuration here, or leave empty for defaults
-      })
-    end,
   },
 
-  -- zoxide inside nvim
+  -- zoxide with telescope
   {
     "jvgrootveld/telescope-zoxide",
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -54,7 +43,7 @@ return {
     end,
   },
 
-  -- jump inside nvim
+  -- faster navigation
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -65,33 +54,24 @@ return {
     },
   },
 
-  -- treesitter
-  {
-  	"nvim-treesitter/nvim-treesitter",
-    branch = "main", -- Force the new rewrite branch
-    build = ":TSUpdate",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-       "html", "css"
-  		},
-  	},
-  },
+  -- treesitter fix
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   branch = "main", -- Force the new rewrite branch
+  --   build = ":TSUpdate",
+  --     opts = {
+  --       ensure_installed = {
+  --         "vim", "lua", "vimdoc",
+  --          "html", "css"
+  --       },
+  --   },
+  -- },
 
   -- nvim-tree override to show dotfiles and .gitignore files
   {
     "nvim-tree/nvim-tree.lua",
     config = function()
-      require("nvim-tree").setup({
-        filters = {
-          --- display dot files in file explorer, hopefully
-          dotfiles = false,
-          git_ignored = false,
-        },
-        git = {
-          ignore = false,
-        },
-      })
+      require "configs.nvimtree"
     end,
   },
 
@@ -101,13 +81,8 @@ return {
     lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
-
       "sindrets/diffview.nvim",        -- optional
-
-      -- For a custom log pager
       "m00qek/baleia.nvim",            -- optional
-
-      -- Only one of these is needed.
       "nvim-telescope/telescope.nvim", -- optional
     },
     cmd = "Neogit",
@@ -116,8 +91,37 @@ return {
     },
   },
 
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically
+  {
+    'tpope/vim-sleuth',
+    lazy = false
+  },
 
+  -- Save vim session in a Session.vim file 
+  {
+    'tpope/vim-obsession',
+    lazy = false
+  },
+
+  -- split or join arrays and objects
+  {
+    'Wansmer/treesj',
+    keys = {
+      { '<leader>S', function()
+        require('treesj').split()
+      end, desc = "Split (TreeSJ)" },
+      { '<leader>J', function() require('treesj').join() end, desc = "Join (TreeSJ)" },
+    },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false,
+        recursive = false,
+      })
+    end,
+  },
+
+  -- highlight todos
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -125,4 +129,13 @@ return {
     opts = { signs = false },
   },
 
+  -- preview markdown files
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { "markdown" },
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render_markdown.Config
+    opts = {},
+  }
 }
